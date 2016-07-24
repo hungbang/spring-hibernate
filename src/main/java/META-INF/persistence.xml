@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="spring-hibernate">
+		<class>springhibernate.core.model.Actor</class>
+		<class>springhibernate.core.model.Address</class>
+		<class>springhibernate.core.model.Category</class>
+		<class>springhibernate.core.model.City</class>
+		<class>springhibernate.core.model.Country</class>
+		<class>springhibernate.core.model.Customer</class>
+		<class>springhibernate.core.model.Film</class>
+		<class>springhibernate.core.model.FilmActor</class>
+		<class>springhibernate.core.model.FilmActorPK</class>
+		<class>springhibernate.core.model.FilmCategory</class>
+		<class>springhibernate.core.model.FilmCategoryPK</class>
+		<class>springhibernate.core.model.FilmText</class>
+		<class>springhibernate.core.model.Inventory</class>
+		<class>springhibernate.core.model.Language</class>
+		<class>springhibernate.core.model.Payment</class>
+		<class>springhibernate.core.model.Rental</class>
+		<class>springhibernate.core.model.Staff</class>
+		<class>springhibernate.core.model.Store</class>
+	</persistence-unit>
+</persistence>
