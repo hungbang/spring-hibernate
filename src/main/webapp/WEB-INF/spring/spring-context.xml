@@ -44,21 +44,39 @@
 		<property name="password" value="${hibernate.password}" />
 	</bean>
 	
-<!-- 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mappingResources">
-			<list>
-				<value>hibernate.hbm.xml</value>
-			</list>
-		</property>
 		<property name="hibernateProperties">
 			<list>
-				<value>hibernate.dialect=${hibernate.dialect}</value>
+				<value>hibernate.dialect=${hibernate.dialect_5}</value>
 				<value>hibernate.show_sql=${hibernate.show_sql}</value>
 				<value>hibernate.format_sql=${hibernate.format_sql}</value>
 			</list>
 		</property>
-	</bean> -->
+		<property name="packagesToScan" value="springhibernate.core.model"/>
+		<!-- <property name="mappingResources">
+			<list>
+				<value>classpath:mappings/Actor.hbm.xml</value>
+				<value>classpath:mappings/Address.hbm.xml</value>
+				<value>classpath:mappings/Category.hbm.xml</value>
+				<value>classpath:mappings/City.hbm.xml</value>
+				<value>classpath:mappings/Country.hbm.xml</value>
+				<value>classpath:mappings/Customer.hbm.xml</value>
+				<value>classpath:mappings/Film.hbm.xml</value>
+				<value>classpath:mappings/FilmActor.hbm.xml</value>
+				<value>classpath:mappings/FilmActorPK.hbm.xml</value>
+				<value>classpath:mappings/FilmCategory.hbm.xml</value>
+				<value>classpath:mappings/FilmCategoryPK.hbm.xml</value>
+				<value>classpath:mappings/FilmText.hbm.xml</value>
+				<value>classpath:mappings/Inventory.hbm.xml</value>
+				<value>classpath:mappings/Language.hbm.xml</value>
+				<value>classpath:mappings/Payment.hbm.xml</value>
+				<value>classpath:mappings/Rental.hbm.xml</value>
+				<value>classpath:mappings/Staff.hbm.xml</value>
+				<value>classpath:mappings/Store.hbm.xml</value>
+			</list>
+		</property> -->
+	</bean>
 	
 	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="generateDdl" value="true" />

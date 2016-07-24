@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2016 1:15:06 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="springhibernate.core.model.Staff" table="STAFF">
+        <id name="staffId" type="byte">
+            <column name="STAFFID" />
+            <generator class="assigned" />
+        </id>
+        <property name="active" type="byte">
+            <column name="ACTIVE" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="firstName" type="java.lang.String">
+            <column name="FIRSTNAME" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="LASTNAME" />
+        </property>
+        <property name="lastUpdate" type="java.sql.Timestamp">
+            <column name="LASTUPDATE" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <primitive-array name="picture" table="STAFF">
+            <key>
+                <column name="STAFFID" />
+            </key>
+            <index></index>
+            <element type="byte">
+                <column name="PICTURE" />
+            </element>
+        </primitive-array>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <list name="payments" inverse="false" table="PAYMENT" lazy="true">
+            <key>
+                <column name="STAFFID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Payment" />
+        </list>
+        <list name="rentals" inverse="false" table="RENTAL" lazy="true">
+            <key>
+                <column name="STAFFID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Rental" />
+        </list>
+        <many-to-one name="address" class="springhibernate.core.model.Address" fetch="join">
+            <column name="ADDRESS" />
+        </many-to-one>
+        <many-to-one name="store" class="springhibernate.core.model.Store" fetch="join">
+            <column name="STORE" />
+        </many-to-one>
+        <list name="stores" inverse="false" table="STORE" lazy="true">
+            <key>
+                <column name="STAFFID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Store" />
+        </list>
+    </class>
+</hibernate-mapping>

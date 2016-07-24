@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2016 1:15:06 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="springhibernate.core.model.City" table="CITY">
+        <id name="cityId" type="int">
+            <column name="CITYID" />
+            <generator class="assigned" />
+        </id>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="lastUpdate" type="java.sql.Timestamp">
+            <column name="LASTUPDATE" />
+        </property>
+        <list name="addresses" inverse="false" table="ADDRESS" lazy="true">
+            <key>
+                <column name="CITYID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Address" />
+        </list>
+        <many-to-one name="country" class="springhibernate.core.model.Country" fetch="join">
+            <column name="COUNTRY" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

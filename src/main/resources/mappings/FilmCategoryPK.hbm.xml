@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2016 1:15:06 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="springhibernate.core.model.FilmCategoryPK" table="FILMCATEGORYPK">
+        <id name="filmId" type="int">
+            <column name="FILMID" />
+            <generator class="assigned" />
+        </id>
+        <property name="categoryId" type="byte">
+            <column name="CATEGORYID" />
+        </property>
+    </class>
+</hibernate-mapping>
