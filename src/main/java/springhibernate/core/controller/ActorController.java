@@ -1,16 +1,21 @@
 package springhibernate.core.controller;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import springhibernate.core.model.Actor;
 import springhibernate.core.service.ActorService;
+import springhibernate.core.validator.ActorValidator;
 
 @Controller
 public class ActorController {
@@ -20,16 +25,39 @@ public class ActorController {
 	@Autowired
 	private ActorService actorService;
 	
-	@RequestMapping(value = "/viewActor", method = RequestMethod.GET)
-	public ModelAndView viewActor(){
+	@Autowired
+	@Qualifier("actorValidator")
+	private ActorValidator validator;
+	
+	@InitBinder
+	private void initBinder(WebDataBinder binder){
+		binder.setValidator(validator);
+	}
+	
+	//create modelAttribute
+	@ModelAttribute("actor")
+	public Actor createActorModel(){
+		return new Actor();
+	}
+	
+	@RequestMapping(value = "/actorForm", method = RequestMethod.GET)
+	public String viewActor(Model model, @ModelAttribute("actor") Actor actor){
 		log.info("view actor");
-		ModelAndView model = new ModelAndView();
-		List<Actor> actorLst = actorService.findAll(); 
-		if(!actorLst.isEmpty()){
-			log.info("actor first name: "+ actorLst.get(0).getFirstName());
+//		List<Actor> actorLst = actorService.findAll(); 
+		model.addAttribute("title", "Input form actor");
+		return "actorForm";
+	}
+	
+	@RequestMapping(value = "/saveActor", method = RequestMethod.POST)
+	public String saveActor(Model model, @ModelAttribute("actor") @Validated Actor actor, BindingResult bindingResult){
+		log.info("saveActor");
+//		List<Actor> actorLst = actorService.findAll(); 
+		if (bindingResult.hasErrors()) {
+			log.info("Returning actorForm.jsp page");
+			return "actorForm";
 		}
-		model.addObject("actorList", actorLst);
-		model.setViewName("actor");
-		return model;
+		model.addAttribute("actor", actor);
+		model.addAttribute("title", "Save form actor");
+		return "actorSaveSuccess";
 	}
 }

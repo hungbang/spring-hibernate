@@ -1,4 +1,4 @@
-package main.java.springhibernate.core.controller;
+package springhibernate.core.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
