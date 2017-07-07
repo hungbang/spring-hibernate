@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2016 1:15:06 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="springhibernate.core.model.Store" table="STORE">
+        <id name="storeId" type="byte">
+            <column name="STOREID" />
+            <generator class="assigned" />
+        </id>
+        <property name="lastUpdate" type="java.sql.Timestamp">
+            <column name="LASTUPDATE" />
+        </property>
+        <list name="customers" inverse="false" table="CUSTOMER" lazy="true">
+            <key>
+                <column name="STOREID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Customer" />
+        </list>
+        <list name="inventories" inverse="false" table="INVENTORY" lazy="true">
+            <key>
+                <column name="STOREID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Inventory" />
+        </list>
+        <list name="staffs" inverse="false" table="STAFF" lazy="true">
+            <key>
+                <column name="STOREID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Staff" />
+        </list>
+        <many-to-one name="address" class="springhibernate.core.model.Address" fetch="join">
+            <column name="ADDRESS" />
+        </many-to-one>
+        <many-to-one name="staff" class="springhibernate.core.model.Staff" fetch="join">
+            <column name="STAFF" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

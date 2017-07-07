@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2016 1:15:06 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="springhibernate.core.model.Film" table="FILM">
+        <id name="filmId" type="int">
+            <column name="FILMID" />
+            <generator class="assigned" />
+        </id>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="lastUpdate" type="java.sql.Timestamp">
+            <column name="LASTUPDATE" />
+        </property>
+        <property name="length" type="int">
+            <column name="LENGTH" />
+        </property>
+        <property name="rating" type="java.lang.String">
+            <column name="RATING" />
+        </property>
+        <property name="releaseYear" type="java.util.Date">
+            <column name="RELEASEYEAR" />
+        </property>
+        <property name="rentalDuration" type="byte">
+            <column name="RENTALDURATION" />
+        </property>
+        <property name="rentalRate" type="java.math.BigDecimal">
+            <column name="RENTALRATE" />
+        </property>
+        <property name="replacementCost" type="java.math.BigDecimal">
+            <column name="REPLACEMENTCOST" />
+        </property>
+        <property name="specialFeatures" type="java.lang.String">
+            <column name="SPECIALFEATURES" />
+        </property>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <many-to-one name="language1" class="springhibernate.core.model.Language" fetch="join">
+            <column name="LANGUAGE1" />
+        </many-to-one>
+        <many-to-one name="language2" class="springhibernate.core.model.Language" fetch="join">
+            <column name="LANGUAGE2" />
+        </many-to-one>
+        <list name="filmActors" inverse="false" table="FILMACTOR" lazy="true">
+            <key>
+                <column name="FILMID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.FilmActor" />
+        </list>
+        <list name="filmCategories" inverse="false" table="FILMCATEGORY" lazy="true">
+            <key>
+                <column name="FILMID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.FilmCategory" />
+        </list>
+        <list name="inventories" inverse="false" table="INVENTORY" lazy="true">
+            <key>
+                <column name="FILMID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="springhibernate.core.model.Inventory" />
+        </list>
+    </class>
+</hibernate-mapping>
